@@ -1,14 +1,10 @@
 package com.traders.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.traders.models.Grains;
-import com.traders.models.request.GrainsRequest;
 import com.traders.repository.GrainsStoreRepository;
-
 
 @Service
 public class GrainsStoreService {
@@ -19,6 +15,8 @@ public class GrainsStoreService {
 	public void saveGrains( Grains grains) 
 	{
 	
+		grains.getPurchaseDetails().setGrainName(grains.getGrainName());
+		grains.getSalesDetails().setGrainName(grains.getGrainName());
 		grains.getPurchaseDetails().setAmount(grains.getPurchaseDetails().getQuantity() * grains.getPurchaseDetails().getRate());
 		
 		grains.getSalesDetails().setAmount(grains.getSalesDetails().getQuantity() * grains.getSalesDetails().getRate() );

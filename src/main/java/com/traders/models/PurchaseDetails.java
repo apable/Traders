@@ -1,5 +1,6 @@
 package com.traders.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -7,17 +8,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity
-public class PurchaseDetails {
+public class PurchaseDetails implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id ;
+	int id  ;
+	String grainName;
 	Date date; 
 	String genes; 
 	int quantity ;
 	int rate ;
 	long amount ;
 	int closingStock;
+	public String getGrainName() {
+		return grainName;
+	}
+	public void setGrainName(String grainName) {
+		this.grainName = grainName;
+	}
 	public Date getDate() {
 		return date;
 	}
@@ -56,7 +64,8 @@ public class PurchaseDetails {
 	}	
 	@Override
 	public String toString() {
-		return "PurchaseDetails [date=" + date + ", genes=" + genes + ", quantity=" + quantity + ", rate=" + rate
-				+ ", amount=" + amount + ", closingStock=" + closingStock + "]";
+		return "PurchaseDetails [id=" + id + ", grainName=" + grainName + ", date=" + date + ", genes=" + genes
+				+ ", quantity=" + quantity + ", rate=" + rate + ", amount=" + amount + ", closingStock=" + closingStock
+				+ "]";
 	}
 }
